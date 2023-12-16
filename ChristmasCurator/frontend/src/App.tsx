@@ -3,24 +3,22 @@ import logo from "./assets/images/logo-universal.png";
 import "./App.css";
 import "./ChristmasTree.css";
 import { Greet } from "../wailsjs/go/main/App";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import Curater from "./curator";
 import Curator from "./curator";
 
 function App() {
-  const [resultText, setResultText] = useState(
-    "Please enter your name below 👇"
-  );
+  const [resultText, setResultText] =
+    useState("整理するファイルを選択するのだ！");
   const [name, setName] = useState("");
   const updateName = (e: any) => setName(e.target.value);
   const updateResultText = (result: string) => setResultText(result);
 
   function greet() {
-    Greet(name).then(updateResultText);
+    Greet(name);
   }
   return (
     <div id="App">
-      <img src={logo} id="logo1" alt="logo" width="50%" />
       <div className="snow">●</div>
       <div className="snow snow2nd">●</div>
       <div id="result" className="result">
@@ -35,10 +33,13 @@ function App() {
           name="input"
           type="text"
         />
-        <link></link>
+
         <button className="btn" onClick={greet}>
-          Greet
+          このファイルを読み取るのだ！
         </button>
+        <Link to="/Curator" relative="path">
+          <button className="btn">Go</button>
+        </Link>
       </div>
     </div>
   );

@@ -7,15 +7,15 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Curator from "./curator";
 
-const container = document.getElementById("root");
+// const container = document.getElementById("root");
 
-const root = createRoot(container!);
+// const root = createRoot(container!);
 
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
