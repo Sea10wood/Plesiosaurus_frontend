@@ -87,16 +87,18 @@ const Image: React.FC<ImageProps> = (props) => {
   };
   return (
     <div>
-      <div
-        style={{
-          transform: `scale(${(Math.random() % 0.5) + 0.5})`,
-          border: `solid 1.5px ${borderColor}`,
-        }}
-        className="circle "
-        onMouseEnter={showPreview}
-        onMouseLeave={hidePreview}
-      >
-        <img src={props.src} alt="cute dog" className="circle" />
+      <div>
+        <div
+          style={{
+            transform: `scale(${(Math.random() % 0.5) + 0.5})`,
+            border: `solid 1.5px ${borderColor}`,
+          }}
+          className="circle "
+          onMouseEnter={showPreview}
+          onMouseLeave={hidePreview}
+        >
+          <img src={props.src} alt="cute dog" className="circle" />
+        </div>
       </div>
       {isPreviewVisible && (
         <div
@@ -105,6 +107,7 @@ const Image: React.FC<ImageProps> = (props) => {
             position: "absolute",
             right: "100%",
             marginLeft: "10px",
+            width: "100px",
           }}
         >
           <img src={props.src} alt="Preview" width="100px" />

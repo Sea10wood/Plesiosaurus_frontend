@@ -305,7 +305,15 @@ body {
 } */
 
 .preview {
-  position: relative;
+  position: absolute;
+  display: inline-block;
+  padding: 20px 20px;
+  background: #ffffff;
+  left: 245px;
+  top: -20px;
+  transform: rotate(10deg);
+  -moz-transform: rotate(10deg);
+  -webkit-transform: rotate(10deg);
 }
 .preview::before {
   position: absolute;
@@ -313,6 +321,5 @@ body {
   left: 0;
   top: 0;
   color: #ffffff;
-  padding: 5px 10px;
-  background: #000000;
+  background: #ffffff;
 }
