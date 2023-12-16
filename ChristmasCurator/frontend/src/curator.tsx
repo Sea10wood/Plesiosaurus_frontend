@@ -1,9 +1,12 @@
 import { useState } from "react";
 import logo from "./assets/images/logo-universal.png";
-// import "./App.css";
+import "./App.css";
 import "./ChristmasTree.css";
 import { Greet } from "../wailsjs/go/main/App";
 import Tree from "./components/photo";
+import tenshi from "../src/assets/images/tenshi.png";
+import next from "../src/assets/images/nect.png";
+import { Link } from "react-router-dom";
 
 function Curator() {
   const [resultText, setResultText] = useState(
@@ -39,7 +42,7 @@ function Curator() {
       <div className="container">
         <div className="star">
           <div className="treeCanvas">
-            <div className="moon">海洋無酸素事変</div>
+            <div className="moon"></div>
             <div className="tree top"></div>
             <div className="tree middle"></div>
             <div className="tree bottom"></div>
@@ -57,6 +60,14 @@ function Curator() {
               <Tree />
             </div>
           </div>
+          <Link to="/Curator" relative="path">
+            <div className="balloon1">削除</div>
+            <img src={tenshi} alt="天使" className="tenshi" />
+          </Link>
+          <div style={{ marginLeft: "7vw" }}>
+            <div className="balloon1">スキップ</div>
+          </div>
+          <img src={next} alt="next" className="next" />
         </div>
       </div>
 

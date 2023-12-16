@@ -61,8 +61,22 @@ interface ImageProps {
 const Image: React.FC<ImageProps> = (props) => {
   const getRandomColor = () => {
     return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    const baseColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    return `linear-gradient(135deg, ${baseColor} 0%, ${lightenColor(
+      baseColor,
+      20
+    )} 100%)`;
   };
   const borderColor = getRandomColor();
+  const lightenColor = (color: string, percent: number) => {
+    const num = parseInt(color.slice(1), 16);
+    const amt = Math.round(2.55 * percent);
+    const R = (num >> 16) + amt;
+    const B = ((num >> 8) & 0x00ff) + amt;
+    const G = (num & 0x0000ff) + amt;
+
+    return `#${((1 << 24) | (R << 16) | (B << 8) | G).toString(16).slice(1)}`;
+  };
   return (
     <div
       style={{
