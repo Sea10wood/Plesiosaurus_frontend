@@ -53,20 +53,34 @@
 
 import React, { useState } from "react";
 import "../ChristmasTree.css";
+import tenshi from "../assets/images/tenshi.png";
+import next from "../assets/images/nect.png";
 
 interface ImageProps {
   src: string;
 }
 
-const Image: React.FC<ImageProps> = (props) => {
+const Image: React.FC<ImageProps & { isMovingUp: boolean }> = (props) => {
   const [isPreviewVisible, setPreviewVisible] = useState(false);
+  const [isMouseOver, setMouseOver] = useState(false);
+
   const showPreview = () => {
     setPreviewVisible(true);
   };
 
   const hidePreview = () => {
-    setPreviewVisible(false);
+    if (!isMouseOver) {
+      setPreviewVisible(false);
+    }
   };
+  const handleMouseOver = () => {
+    setMouseOver(true);
+  };
+  const handleMouseOut = () => {
+    setMouseOver(false);
+    hidePreview();
+  };
+
   const getRandomColor = () => {
     return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
     const baseColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
@@ -87,19 +101,20 @@ const Image: React.FC<ImageProps> = (props) => {
   };
   return (
     <div>
-      <div>
-        <div
-          style={{
-            transform: `scale(${(Math.random() % 0.5) + 0.5})`,
-            border: `solid 1.5px ${borderColor}`,
-          }}
-          className="circle "
-          onMouseEnter={showPreview}
-          onMouseLeave={hidePreview}
-        >
-          <img src={props.src} alt="cute dog" className="circle" />
-        </div>
+      <div
+        style={{
+          transform: `scale(${(Math.random() % 0.5) + 0.5})`,
+          border: `solid 1.5px ${borderColor}`,
+        }}
+        className="circle "
+        onMouseEnter={showPreview}
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+      >
+        <img src={props.src} alt="cute dog" className="circle" />
       </div>
+
+      {/* 右に表示される写真カード */}
       {isPreviewVisible && (
         <div
           className="preview"
@@ -141,6 +156,16 @@ const Tree = () => {
   ];
   const splitUrls = [urls.slice(0, 3), urls.slice(3, 8), urls.slice(8, 15)];
 
+  const [isMovingUp, setMovingUp] = useState(false);
+
+  const handleMoveUp = () => {
+    console.log("handleMoveUp");
+    setMovingUp(true);
+    setTimeout(() => {
+      setMovingUp(false);
+    }, 500);
+  };
+
   return (
     <div
       style={{
@@ -152,10 +177,30 @@ const Tree = () => {
       {splitUrls.map((urls) => (
         <div style={{ display: "flex", flexDirection: "row" }}>
           {urls.map((url) => (
-            <Image key={url} src={url} />
+            <Image key={url} src={url} isMovingUp={true} />
           ))}
         </div>
       ))}
+      <div>
+        <div style={{ marginTop: "30px" }}>
+          <div className="balloon1">削除</div>
+          <img
+            src={tenshi}
+            alt="天使"
+            className="tenshi"
+            style={{ cursor: "pointer" }}
+            onClick={handleMoveUp}
+          />
+        </div>
+        <div>
+          <div style={{ marginLeft: "200px" }}>
+            <div className="balloon1" style={{ marginTop: "-100px" }}>
+              スキップ
+            </div>
+            <img src={next} alt="next" className="next" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

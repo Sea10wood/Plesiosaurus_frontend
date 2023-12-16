@@ -257,13 +257,16 @@ body {
   position: absolute;
   margin-top: -5vw;
   margin-left: 15vw;
+  transform: rotate(10deg);
+  -moz-transform: rotate(10deg);
+  -webkit-transform: rotate(10deg);
 }
 
 .balloon1 {
   position: absolute;
   display: inline-block;
   margin-top: -8vw;
-  margin-left: 14vw;
+  margin-left: 14.7vw;
   padding: 4px 4px;
   min-width: 80px;
   max-width: 100%;
@@ -271,6 +274,9 @@ body {
   font-size: 10px;
   background: #e0edff;
   border-radius: 20px;
+  transform: rotate(10deg);
+  -moz-transform: rotate(10deg);
+  -webkit-transform: rotate(10deg);
 }
 
 .balloon1:before {
@@ -292,8 +298,11 @@ body {
   width: 50px;
   height: 50px;
   position: absolute;
-  margin-top: -5vw;
-  margin-left: 22vw;
+  margin-top: -4vw;
+  margin-left: 15vw;
+  transform: rotate(10deg);
+  -moz-transform: rotate(10deg);
+  -webkit-transform: rotate(10deg);
 }
 
 /* .tenshicontainer {
