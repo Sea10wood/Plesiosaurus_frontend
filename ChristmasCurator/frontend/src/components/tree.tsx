@@ -29,10 +29,8 @@ const Tree = () => {
   const splitUrls = [urls.slice(0, 3), urls.slice(3, 8), urls.slice(8, 15)];
   const [isAnimationActive, setAnimationActive] = useState("image-Container");
   const [slideDistance, setSlideDistance] = useState(0);
+  const [slideUpDistance, setSlideUpDistance] = useState(0);
 
-  const handleButtonClick = () => {
-    setAnimationActive("imagedog-container");
-  };
   const handleNextClick = () => {
     setSlideDistance((prevDistance) => prevDistance + 100);
   };
@@ -67,14 +65,19 @@ const Tree = () => {
             src={tenshi}
             alt="天使"
             className="tenshi"
-            onClick={handleButtonClick}
+            onClick={handleNextClick}
           />
         </div>
         <div style={{ marginLeft: "200px" }}>
           <div className="balloon1" style={{ marginTop: "-100px" }}>
             スキップ
           </div>
-          <img src={next} alt="next" className="next" onClick={handleNextClick}/>
+          <img
+            src={next}
+            alt="next"
+            className="next"
+            onClick={handleNextClick}
+          />
         </div>
       </div>
     </div>
