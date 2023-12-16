@@ -59,9 +59,18 @@ interface ImageProps {
 }
 
 const Image: React.FC<ImageProps> = (props) => {
-  const url = "https://images.dog.ceo/breeds/shiba/shiba-8.jpg";
+  const getRandomColor = () => {
+    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+  };
+  const borderColor = getRandomColor();
   return (
-    <div>
+    <div
+      style={{
+        transform: `scale(${(Math.random() % 0.5) + 0.5})`,
+        border: `solid 1.5px ${borderColor}`,
+      }}
+      className="circle "
+    >
       <img src={props.src} alt="cute dog" className="circle" />
     </div>
   );
@@ -81,17 +90,31 @@ const Tree = () => {
     "https://images.dog.ceo/breeds/shiba/shiba-7.jpg",
     "https://images.dog.ceo/breeds/shiba/shiba-8.jpg",
     "https://images.dog.ceo/breeds/shiba/shiba-9.jpg",
+    "https://images.dog.ceo/breeds/shiba/shiba-9.jpg",
+    "https://images.dog.ceo/breeds/shiba/shiba-9.jpg",
+    "https://images.dog.ceo/breeds/shiba/shiba-9.jpg",
+    "https://images.dog.ceo/breeds/shiba/shiba-9.jpg",
+    "https://images.dog.ceo/breeds/shiba/shiba-11.jpg",
+    "https://images.dog.ceo/breeds/shiba/shiba-12.jpg",
+    "https://images.dog.ceo/breeds/shiba/shiba-14.jpg",
   ];
+  const splitUrls = [urls.slice(0, 3), urls.slice(3, 8), urls.slice(8, 15)];
 
   return (
-    <div>
-      {urls.map((url) => {
-        return (
-          <div key={url} className="circle">
-            <Image src={url} />
-          </div>
-        );
-      })}
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      {splitUrls.map((urls) => (
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          {urls.map((url) => (
+            <Image key={url} src={url} />
+          ))}
+        </div>
+      ))}
     </div>
   );
 };

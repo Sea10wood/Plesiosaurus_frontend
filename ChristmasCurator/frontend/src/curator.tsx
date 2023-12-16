@@ -38,18 +38,28 @@ function Curator() {
       <div className="snow snow2nd">●</div>
       <div className="container">
         <div className="star">
-          <div className="photoOverlay">
-            <Tree />
-          </div>
           <div className="treeCanvas">
+            <div className="moon">海洋無酸素事変</div>
             <div className="tree top"></div>
             <div className="tree middle"></div>
             <div className="tree bottom"></div>
             <div className="miki"></div>
           </div>
-          <div className="moon">海洋無酸素事変</div>
+          <div
+            style={{
+              position: "relative",
+              right: "50%",
+              top: "10vw",
+              transform: "translateX(-50%) translateY(-50%)",
+            }}
+          >
+            <div className="photoOverlay">
+              <Tree />
+            </div>
+          </div>
         </div>
       </div>
+
       {/* </div> */}
     </div>
   );
