@@ -51,7 +51,7 @@
 
 // export default Photo;
 
-import React from "react";
+import React, { useState } from "react";
 import "../ChristmasTree.css";
 
 interface ImageProps {
@@ -59,6 +59,14 @@ interface ImageProps {
 }
 
 const Image: React.FC<ImageProps> = (props) => {
+  const [isPreviewVisible, setPreviewVisible] = useState(false);
+  const showPreview = () => {
+    setPreviewVisible(true);
+  };
+
+  const hidePreview = () => {
+    setPreviewVisible(false);
+  };
   const getRandomColor = () => {
     return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
     const baseColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
@@ -78,14 +86,30 @@ const Image: React.FC<ImageProps> = (props) => {
     return `#${((1 << 24) | (R << 16) | (B << 8) | G).toString(16).slice(1)}`;
   };
   return (
-    <div
-      style={{
-        transform: `scale(${(Math.random() % 0.5) + 0.5})`,
-        border: `solid 1.5px ${borderColor}`,
-      }}
-      className="circle "
-    >
-      <img src={props.src} alt="cute dog" className="circle" />
+    <div>
+      <div
+        style={{
+          transform: `scale(${(Math.random() % 0.5) + 0.5})`,
+          border: `solid 1.5px ${borderColor}`,
+        }}
+        className="circle "
+        onMouseEnter={showPreview}
+        onMouseLeave={hidePreview}
+      >
+        <img src={props.src} alt="cute dog" className="circle" />
+      </div>
+      {isPreviewVisible && (
+        <div
+          className="preview"
+          style={{
+            position: "absolute",
+            right: "100%",
+            marginLeft: "10px",
+          }}
+        >
+          <img src={props.src} alt="Preview" width="100px" />
+        </div>
+      )}
     </div>
   );
 };

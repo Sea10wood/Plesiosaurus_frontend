@@ -309,7 +309,7 @@ body {
 }
 .preview::before {
   position: absolute;
-  content: "NEW YORK";
+  /* content: "ファイル名"; */
   left: 0;
   top: 0;
   color: #ffffff;
