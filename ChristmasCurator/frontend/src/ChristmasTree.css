@@ -124,8 +124,8 @@ body {
 }
 
 .moon {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   background-color: #ddf2ff;
   border-radius: 50%;
   display: flex;
@@ -137,18 +137,31 @@ body {
   color: #4551b8;
   font-weight: bold;
   text-align: center;
+  white-space: nowrap;
 }
 
 .image-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 100000000000;
+  z-index: 1000000000;
   position: relative;
 }
 .image {
   width: 80px;
-  height: 80px;
+  height: 20px;
   background-color: #3498db;
   margin-bottom: 10px;
+}
+.effect {
+  padding: 5px;
+  background-color: #ffffff;
+  box-shadow: 0 3px 18px -4px rgba(0, 0, 0, 0.8);
+}
+
+.photoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 200000000;
 }

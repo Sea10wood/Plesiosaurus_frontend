@@ -4,7 +4,6 @@ import "./App.css";
 import "./ChristmasTree.css";
 import { Greet } from "../wailsjs/go/main/App";
 import { Link, Route, Routes } from "react-router-dom";
-import Curater from "./curator";
 import Curator from "./curator";
 
 function App() {

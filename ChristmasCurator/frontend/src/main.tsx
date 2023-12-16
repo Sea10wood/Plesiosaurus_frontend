@@ -16,14 +16,18 @@ import Curator from "./curator";
 //     <App />
 //   </React.StrictMode>
 // );
-ReactDOM.render(
+console.log("aaa");
+const container = document.getElementById("root");
+const root = createRoot(container!);
+
+root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<App />} />
         <Route path="/app" element={<App />} />
         <Route path="/curator" element={<Curator />} />
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
