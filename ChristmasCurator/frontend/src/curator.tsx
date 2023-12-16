@@ -3,7 +3,7 @@ import logo from "./assets/images/logo-universal.png";
 // import "./App.css";
 import "./ChristmasTree.css";
 import { Greet } from "../wailsjs/go/main/App";
-import Photo from "./components/photo";
+import Tree from "./components/photo";
 
 function Curator() {
   const [resultText, setResultText] = useState(
@@ -39,7 +39,7 @@ function Curator() {
       <div className="container">
         <div className="star">
           <div className="photoOverlay">
-            <Photo />
+            <Tree />
           </div>
           <div className="treeCanvas">
             <div className="tree top"></div>

@@ -52,17 +52,47 @@
 // export default Photo;
 
 import React from "react";
+import "../ChristmasTree.css";
 
-const ImageGallery: React.FC = () => {
+interface ImageProps {
+  src: string;
+}
+
+const Image: React.FC<ImageProps> = (props) => {
+  const url = "https://images.dog.ceo/breeds/shiba/shiba-8.jpg";
   return (
     <div>
-      <img
-        src="https://images.dog.ceo/breeds/shiba/shiba-8.jpg"
-        alt="cute dog"
-        width="50vw"
-      />
+      <img src={props.src} alt="cute dog" className="circle" />
     </div>
   );
 };
 
-export default ImageGallery;
+const Tree = () => {
+  const urls = [
+    "https://images.dog.ceo/breeds/shiba/shiba-11.jpg",
+    "https://images.dog.ceo/breeds/shiba/shiba-12.jpg",
+    "https://images.dog.ceo/breeds/shiba/shiba-14.jpg",
+    "https://images.dog.ceo/breeds/shiba/shiba-17.jpg",
+    "https://images.dog.ceo/breeds/shiba/shiba-2.jpg",
+    "https://images.dog.ceo/breeds/shiba/shiba-3i.jpg",
+    "https://images.dog.ceo/breeds/shiba/shiba-4.jpg",
+    "https://images.dog.ceo/breeds/shiba/shiba-5.jpg",
+    "https://images.dog.ceo/breeds/shiba/shiba-6.jpg",
+    "https://images.dog.ceo/breeds/shiba/shiba-7.jpg",
+    "https://images.dog.ceo/breeds/shiba/shiba-8.jpg",
+    "https://images.dog.ceo/breeds/shiba/shiba-9.jpg",
+  ];
+
+  return (
+    <div>
+      {urls.map((url) => {
+        return (
+          <div key={url} className="circle">
+            <Image src={url} />
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+export default Tree;
