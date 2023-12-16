@@ -20,6 +20,7 @@ function Curator() {
     <div id="App">
       <div className="snow">●</div>
       <div className="snow snow2nd">●</div>
+      <div className="night" >●</div>
       <div className="container">
         <div className="star">
           <div className="treeCanvas">
