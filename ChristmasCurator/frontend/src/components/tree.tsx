@@ -3,6 +3,7 @@ import next from "../assets/images/next.png";
 import { useState } from "react";
 import Image from "./photo";
 import DogCard from "./DogCard";
+import "../components/animate.css";
 const Tree = () => {
   const urls = [
     "https://images.dog.ceo/breeds/shiba/shiba-11.jpg",
@@ -26,12 +27,16 @@ const Tree = () => {
     "https://images.dog.ceo/breeds/shiba/shiba-14.jpg",
   ];
   const splitUrls = [urls.slice(0, 3), urls.slice(3, 8), urls.slice(8, 15)];
+  const [isAnimationActive, setAnimationActive] = useState("image-Container");
+  const [slideDistance, setSlideDistance] = useState(0);
 
-  const [isMovingUp, setMovingUp] = useState(false);
-
-  const handleMoveUp = () => {
-    setMovingUp(true);
+  const handleButtonClick = () => {
+    setAnimationActive("imagedog-container");
   };
+  const handleNextClick = () => {
+    setSlideDistance((prevDistance) => prevDistance + 100);
+  };
+
   (window as any).dog = "";
   console.log((window as any).dog);
 
@@ -44,28 +49,32 @@ const Tree = () => {
       }}
     >
       {splitUrls.map((urls) => (
-        <div style={{ display: "flex", flexDirection: "row" }}>
+        <div
+          style={{ display: "flex", flexDirection: "row" }}
+          className={`image-container`}
+          id={(window as any).dog}
+        >
           {urls.map((url) => (
-            <Image key={url} id={url} src={url} isMovingUp={isMovingUp} />
+            <Image key={url} id={url} src={url} isMovingUp={false} />
           ))}
         </div>
       ))}
       <div>
-        <DogCard></DogCard>
+        <DogCard slideDistance={slideDistance}></DogCard>
         <div style={{ marginTop: "30px" }}>
           <div className="balloon1">削除</div>
           <img
             src={tenshi}
             alt="天使"
             className="tenshi"
-            onClick={handleMoveUp}
+            onClick={handleButtonClick}
           />
         </div>
         <div style={{ marginLeft: "200px" }}>
           <div className="balloon1" style={{ marginTop: "-100px" }}>
             スキップ
           </div>
-          <img src={next} alt="next" className="next" />
+          <img src={next} alt="next" className="next" onClick={handleNextClick}/>
         </div>
       </div>
     </div>

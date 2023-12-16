@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import "../components/animate.css";
 
-function DogCard({}) {
+interface DogCardProps {
+  slideDistance: number;
+}
+
+function DogCard({ slideDistance }: DogCardProps) {
   const [url, setUrl] = useState();
-
   setInterval(() => {
     setUrl((window as any).dog);
   }, 100);
@@ -12,9 +16,10 @@ function DogCard({}) {
       className="preview"
       style={{
         position: "absolute",
-        right: "100%",
+        right: `${slideDistance}px`,
         marginLeft: "10px",
         width: "100px",
+        transition: "right 0.5s ease",
       }}
     >
       <img src={url} alt="Preview" width="100px" />

@@ -15,10 +15,7 @@ const Image = ({
 }) => {
   const imageUrl = id;
 
-  const moveUpAnimation = {
-    transition: " all, 300ms, 0s, ease",
-    transform: isMovingUp ? "translateY(-50px)" : "translateY(0)",
-  };
+  
   const [isPreviewVisible, setPreviewVisible] = useState(false);
 
   const [isMouseOver, setMouseOver] = useState(false);
