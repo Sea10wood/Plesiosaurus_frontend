@@ -1,67 +1,26 @@
-// import React from "react";
-
-// interface ImageGridProps {
-//   images: string[];
-//   columnsPerRow: number[];
-// }
-
-// class ImageGrid extends React.Component<ImageGridProps> {
-//   render() {
-//     const { images, columnsPerRow } = this.props;
-
-//     let imageIndex = 0;
-//     return (
-//       <div>
-//         {columnsPerRow.map((columns, rowIndex) => {
-//           const imagesInThisRow = images.slice(
-//             imageIndex,
-//             imageIndex + columns
-//           );
-//           imageIndex += columns;
-
-//           return (
-//             <div key={rowIndex}>
-//               {imagesInThisRow.map((image, colIndex) => (
-//                 <img
-//                   key={colIndex}
-//                   src={image}
-//                   alt={`Image ${imageIndex + colIndex + 1}`}
-//                 />
-//               ))}
-//             </div>
-//           );
-//         })}
-//       </div>
-//     );
-//   }
-// }
-
-// const images: string[] = ["logo-universal.png"];
-
-// const columnsPerRow: number[] = [2, 3, 4];
-
-// const Photo: React.FC = () => {
-//   return (
-//     <div>
-//       <h6>ローカルのファイルを取得</h6>
-//       <ImageGrid images={images} columnsPerRow={columnsPerRow} />
-//     </div>
-//   );
-// };
-
-// export default Photo;
-
 import React, { useState } from "react";
 import "../ChristmasTree.css";
-import tenshi from "../assets/images/tenshi.png";
-import next from "../assets/images/nect.png";
-
 interface ImageProps {
   src: string;
 }
 
-const Image: React.FC<ImageProps & { isMovingUp: boolean }> = (props) => {
+const Image = ({
+  isMovingUp,
+  src,
+  id,
+}: {
+  isMovingUp: boolean;
+  src: string;
+  id: string;
+}) => {
+  const imageUrl = id;
+
+  const moveUpAnimation = {
+    transition: " all, 300ms, 0s, ease",
+    transform: isMovingUp ? "translateY(-50px)" : "translateY(0)",
+  };
   const [isPreviewVisible, setPreviewVisible] = useState(false);
+
   const [isMouseOver, setMouseOver] = useState(false);
 
   const showPreview = () => {
@@ -75,6 +34,8 @@ const Image: React.FC<ImageProps & { isMovingUp: boolean }> = (props) => {
   };
   const handleMouseOver = () => {
     setMouseOver(true);
+    (window as any).dog = imageUrl;
+    console.log((window as any).dog);
   };
   const handleMouseOut = () => {
     setMouseOver(false);
@@ -111,97 +72,11 @@ const Image: React.FC<ImageProps & { isMovingUp: boolean }> = (props) => {
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
       >
-        <img src={props.src} alt="cute dog" className="circle" />
+        <img src={src} alt="cute dog" className="circle" />
       </div>
 
-      {/* 右に表示される写真カード */}
-      {isPreviewVisible && (
-        <div
-          className="preview"
-          style={{
-            position: "absolute",
-            right: "100%",
-            marginLeft: "10px",
-            width: "100px",
-          }}
-        >
-          <img src={props.src} alt="Preview" width="100px" />
-        </div>
-      )}
+    
     </div>
   );
 };
-
-const Tree = () => {
-  const urls = [
-    "https://images.dog.ceo/breeds/shiba/shiba-11.jpg",
-    "https://images.dog.ceo/breeds/shiba/shiba-12.jpg",
-    "https://images.dog.ceo/breeds/shiba/shiba-14.jpg",
-    "https://images.dog.ceo/breeds/shiba/shiba-17.jpg",
-    "https://images.dog.ceo/breeds/shiba/shiba-2.jpg",
-    "https://images.dog.ceo/breeds/shiba/shiba-3i.jpg",
-    "https://images.dog.ceo/breeds/shiba/shiba-4.jpg",
-    "https://images.dog.ceo/breeds/shiba/shiba-5.jpg",
-    "https://images.dog.ceo/breeds/shiba/shiba-6.jpg",
-    "https://images.dog.ceo/breeds/shiba/shiba-7.jpg",
-    "https://images.dog.ceo/breeds/shiba/shiba-8.jpg",
-    "https://images.dog.ceo/breeds/shiba/shiba-9.jpg",
-    "https://images.dog.ceo/breeds/shiba/shiba-9.jpg",
-    "https://images.dog.ceo/breeds/shiba/shiba-9.jpg",
-    "https://images.dog.ceo/breeds/shiba/shiba-9.jpg",
-    "https://images.dog.ceo/breeds/shiba/shiba-9.jpg",
-    "https://images.dog.ceo/breeds/shiba/shiba-11.jpg",
-    "https://images.dog.ceo/breeds/shiba/shiba-12.jpg",
-    "https://images.dog.ceo/breeds/shiba/shiba-14.jpg",
-  ];
-  const splitUrls = [urls.slice(0, 3), urls.slice(3, 8), urls.slice(8, 15)];
-
-  const [isMovingUp, setMovingUp] = useState(false);
-
-  const handleMoveUp = () => {
-    console.log("handleMoveUp");
-    setMovingUp(true);
-    setTimeout(() => {
-      setMovingUp(false);
-    }, 500);
-  };
-
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      {splitUrls.map((urls) => (
-        <div style={{ display: "flex", flexDirection: "row" }}>
-          {urls.map((url) => (
-            <Image key={url} src={url} isMovingUp={true} />
-          ))}
-        </div>
-      ))}
-      <div>
-        <div style={{ marginTop: "30px" }}>
-          <div className="balloon1">削除</div>
-          <img
-            src={tenshi}
-            alt="天使"
-            className="tenshi"
-            style={{ cursor: "pointer" }}
-            onClick={handleMoveUp}
-          />
-        </div>
-        <div>
-          <div style={{ marginLeft: "200px" }}>
-            <div className="balloon1" style={{ marginTop: "-100px" }}>
-              スキップ
-            </div>
-            <img src={next} alt="next" className="next" />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-export default Tree;
+export default Image;

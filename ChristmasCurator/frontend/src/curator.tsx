@@ -1,9 +1,8 @@
 import { useState } from "react";
-import logo from "./assets/images/logo-universal.png";
 import "./App.css";
 import "./ChristmasTree.css";
 import { Greet } from "../wailsjs/go/main/App";
-import Tree from "./components/photo";
+import Tree from "./components/tree";
 import { Link } from "react-router-dom";
 
 function Curator() {
@@ -19,22 +18,6 @@ function Curator() {
   }
   return (
     <div id="App">
-      {/* 
-      <div id="result" className="result">
-        {resultText}
-      </div>
-      <div id="input" className="input-box">
-        <input
-          id="name"
-          className="input"
-          onChange={updateName}
-          autoComplete="off"
-          name="input"
-          type="text"
-        />
-        <button className="btn" onClick={greet}>
-          Greet
-        </button> */}
       <div className="snow">●</div>
       <div className="snow snow2nd">●</div>
       <div className="container">
