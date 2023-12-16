@@ -4,7 +4,7 @@ import logo from "./assets/images/logo-universal.png";
 import "./ChristmasTree.css";
 import { Greet } from "../wailsjs/go/main/App";
 
-function Curater() {
+function Curator() {
   const [resultText, setResultText] = useState(
     "Please enter your name below 👇"
   );
@@ -59,4 +59,4 @@ function Curater() {
   );
 }
 
-export default Curater;
+export default Curator;

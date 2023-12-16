@@ -3,6 +3,9 @@ import logo from "./assets/images/logo-universal.png";
 import "./App.css";
 import "./ChristmasTree.css";
 import { Greet } from "../wailsjs/go/main/App";
+import { Route, Routes } from "react-router-dom";
+import Curater from "./curator";
+import Curator from "./curator";
 
 function App() {
   const [resultText, setResultText] = useState(
@@ -18,6 +21,8 @@ function App() {
   return (
     <div id="App">
       <img src={logo} id="logo1" alt="logo" width="50%" />
+      <div className="snow">●</div>
+      <div className="snow snow2nd">●</div>
       <div id="result" className="result">
         {resultText}
       </div>
