@@ -1,0 +1,9 @@
+services:
+  api:
+    image: golang:1.21.5
+    container_name: jsonApi
+    build: .
+    tty: true
+    ports:
+      - "8080:8080"
+    stdin_open: true
