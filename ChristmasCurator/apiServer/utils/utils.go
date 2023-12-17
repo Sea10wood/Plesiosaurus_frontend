@@ -1,14 +1,15 @@
-package main
+package utils
 
 import (
+	"changeme/apiServer/model"
 	"io/fs"
 	"os"
 	"path/filepath"
 	"strings"
 )
 
-func delImg(tgtPath string) (Result, error) {
-	var result Result
+func DelImg(tgtPath string) (model.Result, error) {
+	var result model.Result
 	if err := os.Remove(tgtPath); err != nil {
 		result.Status = "failure"
 		return result, err
@@ -17,7 +18,7 @@ func delImg(tgtPath string) (Result, error) {
 	return result, nil
 }
 
-func fetchDir(tgtDirText string) ([]Dirs, error) {
+func FetchDir(tgtDirText string) ([]model.Dirs, error) {
 	var dirCount int
 	var dirPath []string
 	var dirDepth []int
@@ -33,7 +34,7 @@ func fetchDir(tgtDirText string) ([]Dirs, error) {
 		}
 		return nil
 	})
-	dirData := make([]Dirs, dirCount-1) // 先頭のカレントディレクトリは抜かす
+	dirData := make([]model.Dirs, dirCount-1) // 先頭のカレントディレクトリは抜かす
 	if err != nil {
 		return dirData, err
 	}
@@ -53,7 +54,7 @@ func fetchDir(tgtDirText string) ([]Dirs, error) {
 	return dirData, nil
 }
 
-func fetchImg(tgtDirText string) ([]Images, error) {
+func FetchImg(tgtDirText string) ([]model.Images, error) {
 	var imgLen int
 	var imgPath []string
 	var imgDate []string
@@ -79,7 +80,7 @@ func fetchImg(tgtDirText string) ([]Images, error) {
 
 		return nil
 	})
-	imgData := make([]Images, imgLen)
+	imgData := make([]model.Images, imgLen)
 	if err != nil {
 		return imgData, err
 	}

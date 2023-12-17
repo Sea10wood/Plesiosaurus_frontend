@@ -22,13 +22,13 @@
 }
 
 .input-box .btn {
-  width: 160px;
-  height: 30px;
+  
   line-height: 30px;
   border-radius: 4px;
   border: none;
   margin: 0 0 0 20px;
-  padding: 0 8px;
+  margin-bottom: 20px;
+  padding: 4px 32px;
   cursor: pointer;
   background-color: rgb(58, 247, 241);
 }

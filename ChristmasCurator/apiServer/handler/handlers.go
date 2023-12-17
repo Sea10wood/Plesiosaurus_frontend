@@ -1,7 +1,9 @@
-package main
+package handler
 
 import (
 	"bytes"
+	"changeme/apiServer/model"
+	"changeme/apiServer/utils"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -14,7 +16,7 @@ func HandlePostRequest(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var receivedData Receive
+	var receivedData model.Receive
 	decoder := json.NewDecoder(r.Body)
 	err := decoder.Decode(&receivedData)
 	if err != nil {
@@ -24,7 +26,7 @@ func HandlePostRequest(w http.ResponseWriter, r *http.Request) {
 
 	if receivedData.Dir != "" {
 		// fetchDir
-		dirs, err := fetchDir(receivedData.Dir)
+		dirs, err :=utils.FetchDir(receivedData.Dir)
 		if err != nil {
 			http.Error(w, "Error fetching directories", http.StatusInternalServerError)
 			return
@@ -45,7 +47,7 @@ func HandlePostRequest(w http.ResponseWriter, r *http.Request) {
 		}
 	} else if receivedData.ImgRoot != "" {
 		// fetchImg
-		imgs, err := fetchImg(receivedData.ImgRoot)
+		imgs, err :=utils.FetchImg(receivedData.ImgRoot)
 		if err != nil {
 			http.Error(w, "Error fetching images", http.StatusInternalServerError)
 			return
@@ -67,7 +69,7 @@ func HandlePostRequest(w http.ResponseWriter, r *http.Request) {
 		}
 	} else if receivedData.Path != "" {
 		// delImg
-		result, err := delImg(receivedData.Path)
+		result, err := utils.DelImg(receivedData.Path)
 		if err != nil {
 			http.Error(w, "Error deleting images", http.StatusInternalServerError)
 			return
@@ -89,7 +91,7 @@ func HandlePostRequest(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func sorter(imgs []Images) []Images {
+func sorter(imgs []model.Images) []model.Images {
 	sort.Slice(imgs, func(i, j int) bool {
 		return imgs[i].Date < imgs[j].Date
 	})
