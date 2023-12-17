@@ -1,11 +1,17 @@
 import { useState } from "react";
-import "./App.css";
 import "./ChristmasTree.css";
+import "./App.css";
 import { Link, Route, Routes } from "react-router-dom";
 import axios from "axios";
 
+type Dir = {
+  full_path: string;
+  path: string;
+  depth: string;
+};
+
 function App() {
-  const [receivedDirs, setReceivedDirs] = useState([]);
+  const [receivedDirs, setReceivedDirs] = useState<Dir[]>([]);
   const sendDir = async () => {
     var json_raw = {
       dir: "../",
@@ -24,11 +30,20 @@ function App() {
     // xhr.setRequestHeader("Content-Type", "application/json");
     // xhr.send(json_data);
 
-    const res = await axios.post("http://localhost:8080", {
-      method: "POST",
-      body: json_raw,
+    // const res = await axios.post("http://localhost:8080", {
+    //   method: "POST",
+    //   body: json_raw,
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
+    const res = await axios.post("http://localhost:8080", json_raw, {
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
-    const data = res.data
+    console.log(res);
+    const data = res.data;
     //  const res = await fetch("http://localhost:8080", {
     //   method: "POST",
     //   headers: {
@@ -38,33 +53,38 @@ function App() {
     // });
 
     // const json = await res.json();
+
+    setReceivedDirs(data);
     console.log(data);
   };
 
   return (
     <div id="App">
-      <h1>"整理するファイルを選択するのだ！"</h1>
-      <div className="snow"></div>
+      <div style={{ marginTop: "20vw" }}>
+        <h1>整理するファイルを選択するのだ！</h1>
+      </div>
+      <div className="snow">●</div>
+      <div className="snow snow2nd">●</div>
       <div className="input-box">
         <button
           className="btn"
           onClick={sendDir}
-          style={{ font: "bold", fontSize: "20px" }}
+          style={{ font: "bold", fontSize: "20px", marginTop: "4vw" }}
         >
           ローカルのファイルを読み取るのだ！
         </button>
-      </div>
-      <div id="receivedDirs">
-        {receivedDirs.map((dir, index) => (
-          <div key={index}></div>
-        ))}
-
-        <Link to="/Curator" relative="path" className="input-box">
-          <button className="btn" style={{ font: "bold", fontSize: "20px" }}>
-            Go
-          </button>
-        </Link>
-      </div>
+      </div>{" "}
+      {receivedDirs.length > 0 && (
+        <div className="result">
+          {receivedDirs.map((dir, index) => (
+            <div key={index}>
+              <p>Full Path: {dir.full_path}</p>
+              <p>Path: {dir.path}</p>
+              <p>Depth: {dir.depth}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

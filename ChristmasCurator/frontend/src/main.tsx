@@ -6,6 +6,7 @@ import Curater from "./curator";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Curator from "./curator";
+import Demo from "./demo";
 
 // const container = document.getElementById("root");
 
@@ -27,6 +28,7 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="/app" element={<App />} />
         <Route path="/curator" element={<Curator />} />
+        <Route path="/demo" element={<Demo />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

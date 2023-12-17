@@ -109,9 +109,6 @@ body {
 
   animation: roll 5s linear infinite;
 }
-.snow::after{
-  content: "●";
-}
 
 .snow2nd {
   animation: anim 8s linear infinite;
@@ -342,9 +339,9 @@ body {
 }
 .preview::before {
   position: absolute;
-  /* content: "ファイル名"; */
+  content: "Path";
   left: 0;
   top: 0;
-  color: #ffffff;
+  color: #313131;
   background: #ffffff;
 }

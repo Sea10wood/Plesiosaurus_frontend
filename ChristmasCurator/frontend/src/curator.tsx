@@ -44,6 +44,9 @@ function Curator() {
           </div>
         </div>
       </div>
+      <div style={{textAlign:"right" ,marginRight: "150px"}}>
+            <h4>ファイル取得日</h4>
+      </div>
 
       {/* </div> */}
     </div>
