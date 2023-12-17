@@ -80,13 +80,13 @@ function App() {
             <div key={index} className="a">
               <div className="styled-link">
                 <p>
-                  <a>Full Path: {dir.full_path}</a>
+                  <a href="/curator">Full Path: {dir.full_path}</a>
                 </p>
                 <p>
-                  <a>Path: {dir.path}</a>
+                  <a href="/curator">Path: {dir.path}</a>
                 </p>
                 <p>
-                  <a>Depth: {dir.depth}</a>
+                  <a href="/curator">Depth: {dir.depth}</a>
                 </p>
               </div>
             </div>
