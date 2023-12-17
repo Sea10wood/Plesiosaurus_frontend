@@ -73,14 +73,22 @@ function App() {
         >
           ローカルのファイルを読み取るのだ！
         </button>
-      </div>{" "}
+      </div>
       {receivedDirs.length > 0 && (
         <div className="result">
           {receivedDirs.map((dir, index) => (
-            <div key={index}>
-              <p>Full Path: {dir.full_path}</p>
-              <p>Path: {dir.path}</p>
-              <p>Depth: {dir.depth}</p>
+            <div key={index} className="a">
+              <div className="styled-link">
+                <p>
+                  <a>Full Path: {dir.full_path}</a>
+                </p>
+                <p>
+                  <a>Path: {dir.path}</a>
+                </p>
+                <p>
+                  <a>Depth: {dir.depth}</a>
+                </p>
+              </div>
             </div>
           ))}
         </div>

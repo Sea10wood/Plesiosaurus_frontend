@@ -56,3 +56,18 @@ body {
   border: none;
   background-color: rgb(255, 255, 255);
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.styled-link {
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.styled-link:hover {
+  color: #0080ff;
+  text-decoration: underline;
+}
