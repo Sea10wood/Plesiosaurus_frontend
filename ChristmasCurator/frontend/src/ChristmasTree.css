@@ -109,6 +109,9 @@ body {
 
   animation: roll 5s linear infinite;
 }
+.snow::after{
+  content: "●";
+}
 
 .snow2nd {
   animation: anim 8s linear infinite;
