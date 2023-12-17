@@ -1,28 +1,47 @@
-import {useState} from 'react';
-import logo from './assets/images/logo-universal.png';
-import './App.css';
-import {Greet} from "../wailsjs/go/main/App";
+import { useState } from "react";
+import logo from "./assets/images/logo-universal.png";
+import "./App.css";
+import "./ChristmasTree.css";
+import { Greet } from "../wailsjs/go/main/App";
+import { Link, Route, Routes } from "react-router-dom";
+import Curator from "./curator";
 
 function App() {
-    const [resultText, setResultText] = useState("Please enter your name below 👇");
-    const [name, setName] = useState('');
-    const updateName = (e: any) => setName(e.target.value);
-    const updateResultText = (result: string) => setResultText(result);
+  const [resultText, setResultText] =
+    useState("整理するファイルを選択するのだ！");
+  const [name, setName] = useState("");
+  const updateName = (e: any) => setName(e.target.value);
+  const updateResultText = (result: string) => setResultText(result);
 
-    function greet() {
-        Greet(name).then(updateResultText);
-    }
+  function greet() {
+    Greet(name);
+  }
+  return (
+    <div id="App">
+      <div className="snow">●</div>
+      <div className="snow snow2nd">●</div>
+      <div id="result" className="result">
+        {resultText}
+      </div>
+      <div id="input" className="input-box">
+        <input
+          id="name"
+          className="input"
+          onChange={updateName}
+          autoComplete="off"
+          name="input"
+          type="text"
+        />
 
-    return (
-        <div id="App">
-            <img src={logo} id="logo" alt="logo"/>
-            <div id="result" className="result">{resultText}</div>
-            <div id="input" className="input-box">
-                <input id="name" className="input" onChange={updateName} autoComplete="off" name="input" type="text"/>
-                <button className="btn" onClick={greet}>Greet</button>
-            </div>
-        </div>
-    )
+        <button className="btn" onClick={greet}>
+          このファイルを読み取るのだ！
+        </button>
+        <Link to="/Curator" relative="path">
+          <button className="btn">Go</button>
+        </Link>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
